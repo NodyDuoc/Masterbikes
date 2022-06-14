@@ -63,3 +63,77 @@ def perfil(request,id):
         "sesion":Usuario.objects.get(idUsuario = id)
         }
     return render(request,'Core/perfil.html',contexto)
+def modFotoUser(request,id):
+    contexto = {
+        "sesion":Usuario.objects.get(idUsuario = id)
+    }
+    return render(request,'Core/modFotoUser.html',contexto)
+    
+
+def userFotoModificado(request,id):
+
+    x = Usuario.objects.get(idUsuario = id)
+ 
+    foto2 = request.FILES['foto1']
+    x.foto = foto2
+    x.save() #update
+    messages.success(request, 'Foto Modificada')
+    contexto ={
+        "sesion":x
+        }
+    return redirect ('perfil',x.idUsuario)
+        
+  
+
+def modDatosUser(request,id):
+    contexto = {
+        "sesion":Usuario.objects.get(idUsuario = id)
+    }
+    return render(request,'Core/modDatosUser.html',contexto)
+
+
+
+
+def userDatosModificado(request,id):
+    usuario           = Usuario.objects.get(idUsuario = id)
+    
+    username2   = request.POST['username1']
+    nombre2     = request.POST['nombre1']
+    apellido2   = request.POST['apellido1']
+    email2      = request.POST['email1']
+
+    try:
+        c = Usuario.objects.get(email = email2)
+        if id == c.idUsuario:
+            c1 = True
+        else:
+            c1 = False
+    except Usuario.DoesNotExist:
+        c1 = True
+    try:
+        x = Usuario.objects.get(username = username2)
+        if id == x.idUsuario:
+            x1 = True
+        else:
+            x1 = False
+    except Usuario.DoesNotExist:
+        x1 = True
+
+
+    if c1 == True and x1 == True:
+        messages.error(request, 'Perfil modificado')
+        usuario.username = username2
+        usuario.nombre = nombre2
+        usuario.apellido = apellido2
+        usuario.email = email2
+        usuario.save() #update
+        contexto ={
+        "sesion":usuario
+        }
+        return redirect ('perfil',usuario.idUsuario)
+    else:
+        messages.error(request, 'El nombre de usuario o correo ya estan ocupados')
+        contexto ={
+        "sesion":usuario
+        }
+        return redirect ('perfil',usuario.idUsuario)

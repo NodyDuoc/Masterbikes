@@ -63,9 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Iniciar Sesion</a>
+                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Inicio</a>
+                                    <a href="{% url 'registro' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Registrarse</a>
+                                    <a href="{% url 'login' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Iniciar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -74,7 +77,9 @@
                             <div class="right_main">
                                 <div class="togle_main"><a class="class=" openbtn onclick="openNav()"><img
                                             src="{% static 'Core/img/togle-menu-icon.png'%}"
-                                            style="max-width: 100%;"></a></div>
+                                            style="max-width: 100%;">
+                                        </a>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -138,7 +143,7 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                
+
                                 <div class="form-group">
                                     <input type="text" class="email-bt" placeholder="Nombre de Usuario" name="username1"
                                         required>
@@ -149,10 +154,9 @@
                                 </div>
                                 <div>
                                     <center>
-                                        <input type="submit" class="gradient-button gradient-button-1"
-                                            value="Iniciar">
-                                        <input type="reset" class="gradient-button gradient-button-2">
-                                        <p id="mensajeReg"></p>
+                                        <button type="submit" class="main_bt">Registrarse</button>
+                                        <button type="reset" class="main_bt">Restablecer</button>
+                                        <p id="mensajeReg" style="color: orange;"></p>
                                     </center>
                                 </div>
                             </form>
