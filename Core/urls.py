@@ -16,15 +16,18 @@ Including another URLconf
 from unicodedata import name
 from django.urls import URLPattern, path
 from django.conf import settings
-from .views import index, login, perfil, registro
+from .views import index, login, perfil, registro, registrarUsuario,loginUser
 from . import views
+from .models import RolUsuario, Usuario
 from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
     path('',index,name="index"),
     path('login/',login,name="login"),
-    path('perfil/',perfil,name="perfil"),
+    path('perfil/<int:id>',perfil,name="perfil"),
     path('registro/',registro,name="registro"),
+    path('registrado/',registrarUsuario,name="registrarUsuario"),
+    path('loginUser/',loginUser,name="loginUser"),
 ]   
 
