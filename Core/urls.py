@@ -16,7 +16,7 @@ Including another URLconf
 from unicodedata import name
 from django.urls import URLPattern, path
 from django.conf import settings
-from .views import index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado
+from .views import index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado, catalogo
 from . import views
 from .models import RolUsuario, Usuario
 from django.contrib.auth.views import LoginView, LogoutView
@@ -34,5 +34,6 @@ urlpatterns = [
     path('userFotoModificado/<int:id>',userFotoModificado,name="userFotoModificado"),
     path('modDatosUser/<int:id>',modDatosUser,name="modDatosUser"),
     path('userDatosModificado/<int:id>',userDatosModificado,name="userDatosModificado"),
+    path('catalogo/',catalogo,name="catalogo"),
 ]   
 

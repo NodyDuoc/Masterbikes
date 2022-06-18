@@ -1,13 +1,19 @@
 from email import message
 from tkinter.tix import Tree
 from django.shortcuts import render, redirect
-from .models import RolUsuario, Usuario
+from .models import RolUsuario, Usuario, Producto
 from django.contrib import messages
 
 # Create your views here.
 
 def index(request):
     return render(request,'Core/index.html')
+def catalogo(request):
+    product = Producto.objects.all()
+    contexto={
+        "productos": product
+    }
+    return render(request,'Core/catalogo.html',contexto)
 def login(request):
     return render(request,'Core/login.html')
 def registro(request):
