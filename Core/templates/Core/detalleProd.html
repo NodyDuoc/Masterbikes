@@ -63,15 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Iniciar Sesion</a>
+                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Inicio</a>
+                                    <a href="{% url 'registro' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Registrarse</a>
+                                    <a href="{% url 'login' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Iniciar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -94,15 +91,11 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="carousel-sporrt_text ">
                                     <h1 class="sport_text"><strong>Master<br><span
-                                                style="color: #fff;">Bikes</span></strong>
-                                    </h1>
+                                                style="color: #fff;">Bikes</span></strong></h1>
                                     <p class="lorem_text">It is a long established fact that a reader will be distracted
-                                        by the
-                                        readable content of a page when looking at its layout. The point of using Lorem
-                                        Ipsum is
-                                        that it has a more-or-less normal distribution of letters, as opposed to using
-                                        'Content
-                                        here, content</p>
+                                        by the readable content of a page when looking at its layout. The point of using
+                                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+                                        opposed to using 'Content here, content</p>
                                     <button class="boynow_bt">Ver más</button>
                                     <button class="contact_bt">Contáctanos</button>
                                 </div>
@@ -121,51 +114,44 @@
     </div>
     <!-- <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span style="color: #000;">Armadas</span></strong></h2> -->
 
-    
-    <!-- our section Start -->
-    <div class="contact_section layout_padding">
+
+
+
+
+
+
+
+
+    <div>
         <div class="container">
-            <h1 class="contact_text"><strong>Bicicletas</strong></h1>
+            <h1 class="contact_text"><strong>Producto</strong></h1>
         </div>
         <div class="contact_main">
             <div class="enput_section">
                 <div class="email_box">
                     <div class="input_main">
-                        <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="/media/{{prod.fotoProducto}}" alt="Fak"
+                                    style="margin-bottom: 10px; border-radius: 10px; max-width: 400px;">
+                            </div>
 
-                            {% if productos %}
-                                {% for p in productos %}
-                                    {% if forloop.first %}<div class="row">{% endif %}
-
-                                        <div class="col-lg-3 col-md-5 col-sm-12" style="padding-top: 20px;">
-
-                                            <div class="card">
-                                                <img class="card-img-top" src="/media/{{p.fotoProducto}}" style="height: 220px;"
-                                                    alt="{{ p.nombreProducto }}">
-                                                <div class="card-body">
-                                                    <h5 class="card-tittle">{{ p.nombreProducto }}</h5>
-                                                    
-                                                    <a href="{% url 'detalleProd' p.idProducto %}">
-                                                    <button>Detalle</button></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        {% if forloop.counter|divisibleby:4 %}
-                                    </div>
-                                    <div class="row">{% endif %}
-                                        {% if forloop.last %}</div>{% endif %}
-                                {% endfor %}
-                            {% endif %}
+                            <div class="container" style="background-color: white; border-radius: 10px; width: 400px;">
+                                <h2>Nombre: {{prod.nombreProducto}}</h2>
+                                <h2>Tipo Producto: {{tipo.nombreTipo}}</h2>
+                                <h2>Categoria: {{catego.nombreCategoria}}</h2>
+                                
+                            </div>
 
                         </div>
+                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- our section end -->
-    
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">
@@ -228,7 +214,6 @@
     <!-- javascript -->
     <script src="{% static 'Core/js/owl.carousel.js'%}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
     <!-- 
          <script>
             $(document).ready(function(){

@@ -1,7 +1,7 @@
 from email import message
 from tkinter.tix import Tree
 from django.shortcuts import render, redirect
-from .models import RolUsuario, Usuario, Producto
+from .models import RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito
 from django.contrib import messages
 
 # Create your views here.
@@ -14,6 +14,29 @@ def catalogo(request):
         "productos": product
     }
     return render(request,'Core/catalogo.html',contexto)
+
+def añadirCarrito(request,idDser,idProd):   
+    cantidad2 = request.POST['cantidad1']
+    User = Usuario.objects.get(idUsuario = idDser) 
+    Prod = Producto.objects.get(idProducto = idProd)
+    Carrito.objects.create(Usuario = User, Producto = Prod, Cantidad = cantidad2)
+    return redirect ('detalleProd',idProd)
+    
+
+
+
+
+def detalleProd(request,idProd):
+    prod      = Producto.objects.get(idProducto = idProd)
+    catego    = Categoria.objects.get(idCategoria = prod.Categoria.idCategoria)
+    tipo      = TipoProducto.objects.get(idTipo = catego.TipoProducto.idTipo)
+
+    contexto={
+        "prod": prod,
+        "catego": catego,
+        "tipo" : tipo,
+    }
+    return render(request,'Core/detalleProd.html',contexto)
 def login(request):
     return render(request,'Core/login.html')
 def registro(request):
