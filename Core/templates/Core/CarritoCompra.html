@@ -63,12 +63,15 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Iniciar Sesion</a>
+                                    <a href="{% url 'index' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Inicio</a>
+                                    <a href="{% url 'registro' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Registrarse</a>
+                                    <a href="{% url 'login' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Iniciar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -91,11 +94,15 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="carousel-sporrt_text ">
                                     <h1 class="sport_text"><strong>Master<br><span
-                                                style="color: #fff;">Bikes</span></strong></h1>
+                                                style="color: #fff;">Bikes</span></strong>
+                                    </h1>
                                     <p class="lorem_text">It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout. The point of using
-                                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                                        opposed to using 'Content here, content</p>
+                                        by the
+                                        readable content of a page when looking at its layout. The point of using Lorem
+                                        Ipsum is
+                                        that it has a more-or-less normal distribution of letters, as opposed to using
+                                        'Content
+                                        here, content</p>
                                     <button class="boynow_bt">Ver más</button>
                                     <button class="contact_bt">Contáctanos</button>
                                 </div>
@@ -114,82 +121,58 @@
     </div>
     <!-- <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span style="color: #000;">Armadas</span></strong></h2> -->
 
-
-
-
-
-
-
-
-
-    <div>
+    
+    <!-- our section Start -->
+    <div class="contact_section layout_padding">
         <div class="container">
-            <h1 class="contact_text"><strong>Mi Perfil</strong></h1>
+            <h1 class="contact_text"><strong>Carrito de compra</strong></h1>
+            
+                            
+                           
         </div>
         <div class="contact_main">
             <div class="enput_section">
                 <div class="email_box">
                     <div class="input_main">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <img src="{{ sesion.foto.url }}" alt=""
-                                    style="margin-bottom: 10px; border-radius: 10px;">
-                            </div>
+                        <div class="container">
+                            {% if carrito %}
+                            {{carrito.get_total_price}}
+                            {% endif %}
+                            
+                            {% if carrito %}
+                                {% for c in carrito %}
+                                    {% if c.Usuario.idUsuario == sesion.idUsuario %}
+                                        {% if forloop.first %}<div class="row">{% endif %}
 
-                            <div class="container" style="background-color: white; border-radius: 10px; width: 400px;">
-                                <h2>Nombre de Usuario: {{sesion.username}}</h2>
-                                <h2>Nombre: {{sesion.nombre}} {{sesion.apellido}}</h2>
-                                <h2>Correo: {{sesion.email}}</h2>
-                            </div>
+                                            <div class="col-lg-3 col-md-5 col-sm-12" style="padding-top: 20px;">
+                                                <img class="card-img-top" src="/media/{{c.Producto.fotoProducto}}" style="height: 220px;"
+                                                    alt="{{c.Producto.nombreProducto}}">
+                                                
+                                                <div class="card">
+                                                    {{c.Producto.nombreProducto}} <br>
+                                                    ${{c.Producto.precio}}
+
+                                                </div>
+                                            </div>
+                                            {% if forloop.counter|divisibleby:4 %}
+                                        </div>
+                                        <div class="row">{% endif %}
+                                            {% if forloop.last %}</div>{% endif %}
+                                            
+                                    {% endif %}
+                                    
+                                {% endfor %}
+                            {% endif %}
+                            
 
                         </div>
-                        <center style="margin-top: 10px;">
-                            <div style="margin-bottom: 10px;">
-                                <a href="{% url 'modFotoUser' sesion.idUsuario %}">
-                                    <button type="button" class="main_bt">Editar Foto</button>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="{% url 'modDatosUser' sesion.idUsuario %}">
-                                <button type="button" class="main_bt">Editar Perfil</button>
-                                </a>
-                            </div>
-                        </center>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- our section end -->
-
-    <!-- about section start -->
-   <div class="container-fluid">
-    <div class="about_section">
-       <div class="container">
-          <div class="about_img"><img src="{% static 'Core/img/bici_armada.png'%}" style="max-width: 700px;"></div>
-          <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span
-                   style="color: #000;">Armadas</span></strong></h2>
-          <div class="about_middle">
-             <p class="about_lorem">It is a long established fact that a reader will be distracted by the readable
-                content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making
-                it It is a long established fact that a reader will be distracted by the readable content of a page
-                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                distribution of letters, as opposed to using 'Content here, content here', making it </p>
-          </div>
-          <div class="red_bt">
-             <a href="{% url 'catalogoSesion' sesion.idUsuario  %}">
-             <button class="read_more">Ver Catalogo</button></a>
-          </div>
-          <div class="red_bt">
-            <a href="{% url 'CarritoCompra' sesion.idUsuario  %}">
-            <button class="read_more">Ver Carrito</button></a>
-         </div>
-       </div>
-    </div>
- </div>
- <!-- about section end -->
+    
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">
@@ -252,6 +235,7 @@
     <!-- javascript -->
     <script src="{% static 'Core/js/owl.carousel.js'%}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
     <!-- 
          <script>
             $(document).ready(function(){

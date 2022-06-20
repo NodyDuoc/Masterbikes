@@ -21,6 +21,8 @@ class Usuario(models.Model):
 
     def __str__(self) :
             return self.username
+    def __carrito__(self):
+        return 
 # Producto
 class TipoProducto(models.Model):
     idTipo = models.AutoField(primary_key=True)
@@ -54,4 +56,4 @@ class Carrito(models.Model):
     idCarrito     = models.AutoField(primary_key=True)
     Usuario       = models.ForeignKey(Usuario, on_delete= models.CASCADE)
     Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
-    Cantidad      = models.IntegerField(null=False, blank=False, default=1)
+    

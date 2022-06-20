@@ -6,6 +6,17 @@ from django.contrib import messages
 
 # Create your views here.
 
+def CarritoCompra(request,id):
+    sesi    = Usuario.objects.get(idUsuario = id)
+    carri   = Carrito.objects.all()
+    product = Producto.objects.all()
+    contexto={
+        "sesion":sesi,
+        "carrito":carri,
+        "productos": product
+    }
+    return render(request,'Core/CarritoCompra.html',contexto)
+
 def index(request):
     return render(request,'Core/index.html')
 def catalogo(request):
@@ -14,6 +25,28 @@ def catalogo(request):
         "productos": product
     }
     return render(request,'Core/catalogo.html',contexto)
+def catalogoSesion(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    product = Producto.objects.all()
+    contexto={
+        "sesion":sesi,
+        "productos": product
+    }
+    return render(request,'Core/catalogoSesion.html',contexto)
+
+def detalleProdSesion(request,idUser,idProd):
+    sesi = Usuario.objects.get(idUsuario = idUser)
+    prod      = Producto.objects.get(idProducto = idProd)
+    catego    = Categoria.objects.get(idCategoria = prod.Categoria.idCategoria)
+    tipo      = TipoProducto.objects.get(idTipo = catego.TipoProducto.idTipo)
+
+    contexto={
+        "sesion":sesi,
+        "prod": prod,
+        "catego": catego,
+        "tipo" : tipo,
+    }
+    return render(request,'Core/detalleProdSesion.html',contexto)
 
 def añadirCarrito(request,idDser,idProd):   
     cantidad2 = request.POST['cantidad1']
@@ -23,11 +56,8 @@ def añadirCarrito(request,idDser,idProd):
     return redirect ('detalleProd',idProd)
     
 
-
-
-
-def detalleProd(request,idProd):
-    prod      = Producto.objects.get(idProducto = idProd)
+def detalleProd(request,id):
+    prod      = Producto.objects.get(idProducto = id)
     catego    = Categoria.objects.get(idCategoria = prod.Categoria.idCategoria)
     tipo      = TipoProducto.objects.get(idTipo = catego.TipoProducto.idTipo)
 
@@ -37,6 +67,7 @@ def detalleProd(request,idProd):
         "tipo" : tipo,
     }
     return render(request,'Core/detalleProd.html',contexto)
+
 def login(request):
     return render(request,'Core/login.html')
 def registro(request):
