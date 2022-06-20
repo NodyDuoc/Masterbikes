@@ -55,7 +55,6 @@ def detalleProdSesion(request,idUser,idProd):
     return render(request,'Core/detalleProdSesion.html',contexto)
 
 def añadirCarrito(request,idUser,idProd):   
-  
     User = Usuario.objects.get(idUsuario = idUser) 
     Prod = Producto.objects.get(idProducto = idProd)
     Carrito.objects.create(Usuario = User, Producto = Prod)
@@ -65,6 +64,19 @@ def eliminarCarrito(request,idUser,idCarri):
     carri = Carrito.objects.get(idCarrito = idCarri) 
     carri.delete()
     return redirect ('CarritoCompra',idUser)
+
+def comprarCarrito(request,idUser):  
+    User = Usuario.objects.get(idUsuario = idUser) 
+    try:
+        carri = Carrito.objects.all()
+        for c in carri :
+            if c.Usuario == User:
+                carr = Carrito.objects.get(idCarrito = c.idCarrito) 
+                carr.delete()
+        return redirect ('CarritoCompra',idUser)
+    except:
+        #No existen carritos
+        return redirect ('CarritoCompra',idUser)
     
 
 def detalleProd(request,id):

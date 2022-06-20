@@ -75,7 +75,9 @@
                                 </div>
                             </div>
                             <div class="middle_main">
-                                <div class="shoping_bag"><img src=" {% static 'Core/img/shopping-bag.png'%}"></div>
+                                <a href="{% url 'CarritoCompra' sesion.idUsuario %}">
+                                    <div class="shoping_bag"><img src=" {% static 'Core/img/shopping-bag.png'%}"></div>
+                                </a>
                             </div>
                             <div class="right_main">
                                 <div class="togle_main"><a class="class=" openbtn onclick="openNav()"><img

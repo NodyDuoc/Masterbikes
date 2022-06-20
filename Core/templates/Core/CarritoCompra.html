@@ -155,10 +155,8 @@
                                             {% if forloop.counter|divisibleby:4 %}
                                         </div>
                                         <div class="row">{% endif %}
-                                            {% if forloop.last %}</div>{% endif %}
-                                            
+                                            {% if forloop.last %}</div>{% endif %}      
                                     {% endif %}
-                                    
                                 {% endfor %}                                
                             {% endif %}
                         </div>
@@ -173,6 +171,12 @@
             <h2>Total a pagar:</h2>
         </div>
         <h2>${{sum}}</h2>
+        {% if sum == 0 %} 
+        <h3>Carrito vacio</h3>
+        {% else %}
+        <a href="{% url 'comprarCarrito' sesion.idUsuario %}">
+        <button>Pagar</button></a>
+        {% endif %}
     </div>
     
 

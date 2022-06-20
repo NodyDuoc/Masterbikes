@@ -72,7 +72,9 @@
                                 </div>
                             </div>
                             <div class="middle_main">
-                                <div class="shoping_bag"><img src=" {% static 'Core/img/shopping-bag.png'%}"></div>
+                                <a href="{% url 'CarritoCompra' sesion.idUsuario %}">
+                                    <div class="shoping_bag"><img src=" {% static 'Core/img/shopping-bag.png'%}"></div>
+                                </a>
                             </div>
                             <div class="right_main">
                                 <div class="togle_main"><a class="class=" openbtn onclick="openNav()"><img
@@ -168,16 +170,8 @@
     <div class="about_section">
        <div class="container">
           <div class="about_img"><img src="{% static 'Core/img/bici_armada.png'%}" style="max-width: 700px;"></div>
-          <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span
-                   style="color: #000;">Armadas</span></strong></h2>
-          <div class="about_middle">
-             <p class="about_lorem">It is a long established fact that a reader will be distracted by the readable
-                content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making
-                it It is a long established fact that a reader will be distracted by the readable content of a page
-                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                distribution of letters, as opposed to using 'Content here, content here', making it </p>
-          </div>
+          
+          
           <div class="red_bt">
              <a href="{% url 'catalogoSesion' sesion.idUsuario  %}">
              <button class="read_more">Ver Catalogo</button></a>
