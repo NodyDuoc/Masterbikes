@@ -125,21 +125,17 @@
     <!-- our section Start -->
     <div class="contact_section layout_padding">
         <div class="container">
-            <h1 class="contact_text"><strong>Carrito de compra</strong></h1>
-            
-                            
-                           
+            <h1 class="contact_text"><strong>Carrito de compra</strong></h1>                           
         </div>
         <div class="contact_main">
             <div class="enput_section">
                 <div class="email_box">
                     <div class="input_main">
                         <div class="container">
-                            {% if carrito %}
-                            {{carrito.get_total_price}}
-                            {% endif %}
+                          
                             
                             {% if carrito %}
+                                
                                 {% for c in carrito %}
                                     {% if c.Usuario.idUsuario == sesion.idUsuario %}
                                         {% if forloop.first %}<div class="row">{% endif %}
@@ -151,7 +147,9 @@
                                                 <div class="card">
                                                     {{c.Producto.nombreProducto}} <br>
                                                     ${{c.Producto.precio}}
-
+                                                    <a href="{% url 'eliminarCarrito' sesion.idUsuario c.idCarrito%}"> 
+                                                        <button>Eliminar</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                             {% if forloop.counter|divisibleby:4 %}
@@ -161,10 +159,8 @@
                                             
                                     {% endif %}
                                     
-                                {% endfor %}
+                                {% endfor %}                                
                             {% endif %}
-                            
-
                         </div>
                     </div>
                 </div>
@@ -172,6 +168,12 @@
         </div>
     </div>
     <!-- our section end -->
+    <div class="card" style="text-align: center;">
+        <div>
+            <h2>Total a pagar:</h2>
+        </div>
+        <h2>${{sum}}</h2>
+    </div>
     
 
     <!-- footer section start -->

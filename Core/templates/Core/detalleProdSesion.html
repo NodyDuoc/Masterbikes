@@ -140,8 +140,12 @@
                                 <h2>Nombre: {{prod.nombreProducto}}</h2>
                                 <h2>Tipo Producto: {{tipo.nombreTipo}}</h2>
                                 <h2>Categoria: {{catego.nombreCategoria}}</h2>
-                                
+                                <h2>Precio: ${{prod.precio}}</h2>
+                                <a href="{% url 'añadirCarrito' sesion.idUsuario prod.idProducto %}">
+                                    <button>Agregar al carrito</button>
+                                </a>
                             </div>
+                            
 
                         </div>
                         

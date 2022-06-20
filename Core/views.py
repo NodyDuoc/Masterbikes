@@ -10,10 +10,16 @@ def CarritoCompra(request,id):
     sesi    = Usuario.objects.get(idUsuario = id)
     carri   = Carrito.objects.all()
     product = Producto.objects.all()
+    sum = 0
+    if carri:
+        for c in carri :
+            if c.Usuario.idUsuario == sesi.idUsuario:
+                sum = sum + c.Producto.precio
     contexto={
         "sesion":sesi,
         "carrito":carri,
-        "productos": product
+        "productos": product,
+        "sum":sum
     }
     return render(request,'Core/CarritoCompra.html',contexto)
 
@@ -48,12 +54,17 @@ def detalleProdSesion(request,idUser,idProd):
     }
     return render(request,'Core/detalleProdSesion.html',contexto)
 
-def añadirCarrito(request,idDser,idProd):   
-    cantidad2 = request.POST['cantidad1']
-    User = Usuario.objects.get(idUsuario = idDser) 
+def añadirCarrito(request,idUser,idProd):   
+  
+    User = Usuario.objects.get(idUsuario = idUser) 
     Prod = Producto.objects.get(idProducto = idProd)
-    Carrito.objects.create(Usuario = User, Producto = Prod, Cantidad = cantidad2)
-    return redirect ('detalleProd',idProd)
+    Carrito.objects.create(Usuario = User, Producto = Prod)
+    return redirect ('detalleProdSesion',idUser,idProd)
+
+def eliminarCarrito(request,idUser,idCarri):   
+    carri = Carrito.objects.get(idCarrito = idCarri) 
+    carri.delete()
+    return redirect ('CarritoCompra',idUser)
     
 
 def detalleProd(request,id):

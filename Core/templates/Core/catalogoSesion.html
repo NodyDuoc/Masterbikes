@@ -143,8 +143,14 @@
                                                 <img class="card-img-top" src="/media/{{p.fotoProducto}}" style="height: 220px;"
                                                     alt="{{ p.nombreProducto }}">
                                                 <div class="card-body">
+                                                    <h4 class="card-tittle">Nombre:</h4>
                                                     <h5 class="card-tittle">{{ p.nombreProducto }}</h5>
-                                                    
+                                                    <h4 class="card-tittle">Tipo de producto:</h4>
+                                                    <h5 class="card-tittle">{{ p.Categoria.TipoProducto.nombreTipo }}</h5>
+                                                    <h4 class="card-tittle">Categoria de {{ p.Categoria.TipoProducto.nombreTipo }}:</h4>
+                                                    <h5 class="card-tittle">{{ p.Categoria.nombreCategoria }}</h5>
+                                                    <h4 class="card-tittle">Precio:</h4>
+                                                    <h5 class="card-tittle">${{ p.precio }}</h5>
                                                     <a href="{% url 'detalleProdSesion' sesion.idUsuario p.idProducto %}">
                                                     <button>Detalle</button></a>
                                                 </div>
