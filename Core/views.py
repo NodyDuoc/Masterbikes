@@ -98,8 +98,9 @@ def registro(request):
 def registrarUsuario(request):
     username2   = request.POST['username1']
     nombre2     = request.POST['nombre1']
-    apellido2   = request.POST['apellido1']
+    apellido2   = request.POST['apellido1'] 
     email2      = request.POST['email1']
+    direccion2      = request.POST['direccion1']
     contrasena2 = request.POST['contrasena1']
     foto2       = request.FILES['foto1']
     try:
@@ -114,7 +115,7 @@ def registrarUsuario(request):
         x1 = True
     if c1 == True and x1 == True:
 
-        Usuario.objects.create(username = username2, nombre = nombre2, apellido = apellido2, email = email2, foto = foto2, contrasena = contrasena2)
+        Usuario.objects.create(username = username2, nombre = nombre2, apellido = apellido2, email = email2, foto = foto2, contrasena = contrasena2, direccion = direccion2)
         sesion = Usuario.objects.get(username = username2)
         contexto ={
         "sesion":sesion
@@ -184,6 +185,8 @@ def userDatosModificado(request,id):
     nombre2     = request.POST['nombre1']
     apellido2   = request.POST['apellido1']
     email2      = request.POST['email1']
+    direccion2  = request.POST['direccion1']
+    
 
     try:
         c = Usuario.objects.get(email = email2)
@@ -206,9 +209,10 @@ def userDatosModificado(request,id):
     if c1 == True and x1 == True:
         messages.error(request, 'Perfil modificado')
         usuario.username = username2
-        usuario.nombre = nombre2
-        usuario.apellido = apellido2
-        usuario.email = email2
+        usuario.nombre    = nombre2
+        usuario.apellido  = apellido2
+        usuario.email     = email2
+        usuario.direccion = direccion2
         usuario.save() #update
         contexto ={
         "sesion":usuario

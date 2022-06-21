@@ -15,6 +15,7 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=50, null=False, blank=False)
     apellido = models.CharField(max_length=50, blank=True, null=True)
     email = models.CharField(max_length=30, null=False)
+    direccion = models.CharField(max_length=50, null=False, blank=False, default="123 Sesame Street")
     foto = models.ImageField(upload_to="foto_perfil", default="foto_perfil/foto_perfil_default.png", blank='')
     contrasena = models.CharField(max_length=20, null=False, blank=False)
     RolUsuario = models.ForeignKey(RolUsuario, on_delete= models.CASCADE, default=1)

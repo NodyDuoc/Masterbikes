@@ -63,15 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Iniciar Sesion</a>
+                                <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Mi perfil</a>
+                                <a href="{% url 'catalogoSesion' sesion.idUsuario  %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Catalogo</a>
+                                <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -135,13 +132,14 @@
                           
                             
                             {% if carrito %}
+                            <div class="row">
                                 
                                 {% for c in carrito %}
                                     {% if c.Usuario.idUsuario == sesion.idUsuario %}
                                         {% if forloop.first %}<div class="row">{% endif %}
 
-                                            <div class="col-lg-3 col-md-5 col-sm-12" style="padding-top: 20px;">
-                                                <img class="card-img-top" src="/media/{{c.Producto.fotoProducto}}" style="height: 220px;"
+                                            <div class="col-md-6 col-sm-12" style="padding-top: 20px;">
+                                                <img class="card-img-top" src="/media/{{c.Producto.fotoProducto}}" style="max-width: 200px; max-height: 200px;"
                                                     alt="{{c.Producto.nombreProducto}}">
                                                 
                                                 <div class="card">
@@ -157,7 +155,8 @@
                                         <div class="row">{% endif %}
                                             {% if forloop.last %}</div>{% endif %}      
                                     {% endif %}
-                                {% endfor %}                                
+                                {% endfor %}  
+                            </div>                              
                             {% endif %}
                         </div>
                     </div>

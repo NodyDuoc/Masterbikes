@@ -63,12 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Iniciar Sesion</a>
+                                <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Mi perfil</a>
+                                <a href="{% url 'catalogoSesion' sesion.idUsuario  %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Catalogo</a>
+                                <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -143,6 +143,8 @@
                                 <h2>Tipo Producto: {{tipo.nombreTipo}}</h2>
                                 <h2>Categoria: {{catego.nombreCategoria}}</h2>
                                 <h2>Precio: ${{prod.precio}}</h2>
+                                <h2>Detalle:</h2>
+                                <h2>{{prod.detalle}}</h2>
                                 <a href="{% url 'añadirCarrito' sesion.idUsuario prod.idProducto %}">
                                     <button>Agregar al carrito</button>
                                 </a>
