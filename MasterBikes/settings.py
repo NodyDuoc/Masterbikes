@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'MasterBikes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.1.16/xe',
+        #'NAME': '192.168.1.16/xe',
         'USER': 'Master1',
         'PASSWORD': 'oracle',
         'TEST':{

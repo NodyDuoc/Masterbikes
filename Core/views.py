@@ -1,7 +1,7 @@
 from email import message
 from tkinter.tix import Tree
 from django.shortcuts import render, redirect
-from .models import RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito
+from .models import  Venta,RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito
 from django.contrib import messages
 
 # Create your views here.
@@ -68,11 +68,26 @@ def eliminarCarrito(request,idUser,idCarri):
 def comprarCarrito(request,idUser):  
     User = Usuario.objects.get(idUsuario = idUser) 
     try:
-        carri = Carrito.objects.all()
+        carri = Carrito.objects.get(Usuario = idUser).order_by('idCarrito')
         for c in carri :
             if c.Usuario == User:
                 carr = Carrito.objects.get(idCarrito = c.idCarrito) 
+                c.
+ 
+    NumVenta      = models.IntegerField(null=False, blank=False, default=0)
+    Usuario       = models.ForeignKey(Usuario, on_delete= models.CASCADE)
+    Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
+    Precio        = models.IntegerField(null=False, blank=False, default=0)
+
+                
+                
+                Venta.objects.create(NumVenta = username2, Usuario = User, Producto = apellido2, Precio = email2)
+
+
                 carr.delete()
+
+
+
         return redirect ('CarritoCompra',idUser)
     except:
         #No existen carritos

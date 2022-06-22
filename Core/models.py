@@ -1,4 +1,6 @@
+from multiprocessing import Value
 from django.db import models
+
 
 # Create your models here.
 # Usuario
@@ -57,4 +59,15 @@ class Carrito(models.Model):
     idCarrito     = models.AutoField(primary_key=True)
     Usuario       = models.ForeignKey(Usuario, on_delete= models.CASCADE)
     Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
+
+
+
+class Venta(models.Model):
+    IdVenta       = models.AutoField(primary_key=True)
+    NumVenta      = models.IntegerField(null=False, blank=False, default=0)
+    Usuario       = models.ForeignKey(Usuario, on_delete= models.CASCADE)
+    Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
+    Precio        = models.IntegerField(null=False, blank=False, default=0)
+    Fecha         = models.DateField(null=False, auto_now_add=True)
     
+         
