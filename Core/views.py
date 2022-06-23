@@ -67,31 +67,25 @@ def eliminarCarrito(request,idUser,idCarri):
 
 def comprarCarrito(request,idUser):  
     User = Usuario.objects.get(idUsuario = idUser) 
-    try:
-        carri = Carrito.objects.get(Usuario = idUser).order_by('idCarrito')
-        for c in carri :
-            if c.Usuario == User:
-                carr = Carrito.objects.get(idCarrito = c.idCarrito) 
-                c.
  
-    NumVenta      = models.IntegerField(null=False, blank=False, default=0)
-    Usuario       = models.ForeignKey(Usuario, on_delete= models.CASCADE)
-    Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
-    Precio        = models.IntegerField(null=False, blank=False, default=0)
-
-                
-                
-                Venta.objects.create(NumVenta = username2, Usuario = User, Producto = apellido2, Precio = email2)
-
-
-                carr.delete()
-
-
-
-        return redirect ('CarritoCompra',idUser)
-    except:
-        #No existen carritos
-        return redirect ('CarritoCompra',idUser)
+    if Venta:
+        numVentas = Venta.objects.all()
+        max_value = None
+        for num in numVentas:
+            if (max_value is None or num.IdVenta > max_value):
+                max_value = num.IdVenta
+        maxVenta = max_value
+    else:
+        maxVenta = 1
+    
+    carri = Carrito.objects.all()
+    for c in carri :
+        if c.Usuario == User:
+            Venta.objects.create(NumVenta = maxVenta, Usuario = User, Producto = c.Producto, Precio = c.Producto.precio)
+            carr = Carrito.objects.get(idCarrito = c.idCarrito) 
+            carr.delete()
+    return redirect ('perfil',idUser)
+  
     
 
 def detalleProd(request,id):
