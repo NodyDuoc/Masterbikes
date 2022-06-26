@@ -1,10 +1,25 @@
 from email import message
 from tkinter.tix import Tree
 from django.shortcuts import render, redirect
-from .models import  Venta,RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito
+from .models import  Venta,RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito, Arriendo
 from django.contrib import messages
 
 # Create your views here.
+
+def RegistrarArriendo(request):
+    if request.POST:
+        Fecha_Arriendo     = request.POST['fecha-arriendo']
+        Fecha_Devolucion   = request.POST['fecha-devolucion'] 
+        Categoria      = request.POST['Categoria']
+        rut      = request.POST['rut']
+        Arriendo.objects.create(FechaArriendo = Fecha_Arriendo, FechaDevolucion = Fecha_Devolucion, CategoriaBicicleta = Categoria,RutArrendador = rut)
+
+        messages.success(request, 'Arriendo registrado')
+        return redirect('arriendos')
+
+
+def arriendos(request):
+    return render(request,'Core/arriendos.html')
 
 def RegistrarReparacion(request,id):
     sesi = Usuario.objects.get(idUsuario = id)

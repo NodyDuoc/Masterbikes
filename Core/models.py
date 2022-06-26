@@ -69,5 +69,13 @@ class Venta(models.Model):
     Producto      = models.ForeignKey(Producto, on_delete= models.CASCADE)
     Precio        = models.IntegerField(null=False, blank=False, default=0)
     Fecha         = models.DateField(null=False, auto_now_add=True)
+
+
+class Arriendo(models.Model):
+    IdArriendo = models.AutoField(primary_key=True)
+    FechaArriendo         = models.DateField(null=False)
+    FechaDevolucion       = models.DateField(null=False)
+    CategoriaBicicleta = models.CharField(max_length=60, null=False, blank=False)
+    RutArrendador = models.CharField(max_length=60, null=False, blank=False)
     
          
