@@ -23,8 +23,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path('RegistrarProducto/<idUser>',RegistrarProducto,name="RegistrarProducto"),
-    path('ingresarProducto/<idUser>',ingresarProducto,name="ingresarProducto"),
+    path('RegistrarProducto/<int:id>',RegistrarProducto,name="RegistrarProducto"),
+    path('ingresarProducto/<int:id>',ingresarProducto,name="ingresarProducto"),
     path('comprarCarrito/<idUser>',comprarCarrito,name="comprarCarrito"),
     path('eliminarCarrito/<idUser>/<idCarri>',eliminarCarrito,name="eliminarCarrito"),
     path('añadirCarrito/<idUser>/<idProd>',añadirCarrito,name="añadirCarrito"),

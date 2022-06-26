@@ -16,7 +16,7 @@ def RegistrarProducto(request,id):
     Color2     = request.POST['Color']
 
     Categoria3    = Categoria.objects.get(idCategoria = Categoria2)
-    Color3         = Usuario.objects.get(idColor = Color2)
+    Color3         = Color.objects.get(idColor = Color2)
 
 
     Producto.objects.create(nombreProducto = nombreProducto2, fotoProducto = fotoProducto2, precio = precio2, detalle = detalle2, Categoria = Categoria3, Color = Color3)
@@ -24,8 +24,13 @@ def RegistrarProducto(request,id):
     return redirect ('ingresarProducto',id)
 def ingresarProducto(request,id):
     sesi = Usuario.objects.get(idUsuario = id)
+    cate = Categoria.objects.all()
+    
+    colo = Color.objects.all()
     contexto ={
-        "sesion":sesi
+        "sesion":sesi,
+        "categoria":cate,
+        "color":colo
     }
     return render(request,'Core/ingresarProducto.html',contexto)
 
