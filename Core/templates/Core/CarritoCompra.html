@@ -134,20 +134,35 @@
                             {% if carrito %}
                             <div class="row">
                                 
-                                {% for c in carrito %}
+                            {% for c in carrito %}
+                                {% for p in productos %}
                                     {% if c.Usuario.idUsuario == sesion.idUsuario %}
                                         {% if forloop.first %}<div class="row">{% endif %}
 
-                                            <div class="col-md-6 col-sm-12" style="padding-top: 20px;">
-                                                <img class="card-img-top" src="/media/{{c.Producto.fotoProducto}}" style="max-width: 200px; max-height: 200px;"
-                                                    alt="{{c.Producto.nombreProducto}}">
+                                            <div class="col-lg-4 col-md-4 col-sm-4" style="padding-top: 20px;">
+                                                
                                                 
                                                 <div class="card">
-                                                    {{c.Producto.nombreProducto}} <br>
-                                                    ${{c.Producto.precio}}
-                                                    <a href="{% url 'eliminarCarrito' sesion.idUsuario c.idCarrito%}"> 
-                                                        <button>Eliminar</button>
-                                                    </a>
+                                                    <img class="card-img-top" src="/media/{{c.Producto.fotoProducto}}" style="max-width: 200px; max-height: 200px;"
+                                                        alt="{{c.Producto.nombreProducto}}" style="width:100%">
+                                                    <div class="card-body">
+                                                        <h1 class="card-tittle">{{ p.nombreProducto }}</h5>
+                                                           
+                                                            
+                                                            <div class="d-flex justify-content-between">
+                                                                <span class="card-tittle categ" style='text-align:left'>Tipo de producto:</span><span class="card-tittle price" style='text-align:right'>{{ p.Categoria.TipoProducto.nombreTipo }}</span>
+                                                            </div>
+        
+                                                            <div class="d-flex justify-content-between">
+                                                                <span class="card-tittle categ" style='text-align:left'>Categoria de {{ p.Categoria.TipoProducto.nombreTipo }}:</span><span class="card-tittle price" style='text-align:right'>{{ p.Categoria.nombreCategoria }}</span>
+                                                            </div>
+                                                            
+                                                        
+                                                            <p class="price_product">${{ p.precio }}</p>
+                                                        <a href="{% url 'eliminarCarrito' sesion.idUsuario c.idCarrito%}"> 
+                                                            <button>Eliminar</button>
+                                                        </a>
+                                                    </div>   
                                                 </div>
                                             </div>
                                             {% if forloop.counter|divisibleby:4 %}
@@ -155,7 +170,8 @@
                                         <div class="row">{% endif %}
                                             {% if forloop.last %}</div>{% endif %}      
                                     {% endif %}
-                                {% endfor %}  
+                                {% endfor %}    
+                            {% endfor %}  
                             </div>                              
                             {% endif %}
                         </div>
