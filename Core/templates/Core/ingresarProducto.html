@@ -63,12 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
-                                        class="fa fa-fw fa-user"></i> Mi perfil</a>
-                                <a href="{% url 'catalogoSesion' sesion.idUsuario  %}" style="margin-right: 10px;"><i
-                                        class="fa fa-fw fa-user"></i> Catalogo</a>
-                                <a href="{% url 'index' %}" style="margin-right: 10px;"><i
-                                        class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
+                                    <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Mi perfil</a>
+                                    <a href="{% url 'catalogoSesion' sesion.idUsuario  %}"
+                                        style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Catalogo</a>
+                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                            class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -118,7 +118,7 @@
     </div>
     <!-- <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span style="color: #000;">Armadas</span></strong></h2> -->
 
-    
+
     <!-- our section Start -->
     <div class="contact_section layout_padding">
         <div class="container">
@@ -129,8 +129,8 @@
                 <div class="email_box">
                     <div class="input_main">
                         <div class="container">
-                            <form action="{% url 'RegistrarProducto' sesion.idUsuario %}" method="POST" name="formRegi" id="formRegi"
-                                enctype="multipart/form-data">
+                            <form action="{% url 'RegistrarProducto' sesion.idUsuario %}" method="POST" name="formRegi"
+                                id="formRegi" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if messages %}
                                 <div>
@@ -141,20 +141,21 @@
                                 {% endif %}
                                 <div class="form-group">
                                     <p class="contact_text"><strong>Foto del Producto</strong></p>
-                                    <input class="form-control" type="file" id="fotoProducto" name="fotoProducto" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="email-bt" placeholder="Nombre del Producto" name="nombreProducto"
+                                    <input class="form-control" type="file" id="fotoProducto" name="fotoProducto"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="email-bt" placeholder="Precio" name="precio"
-                                        required>
+                                    <input type="text" class="email-bt" placeholder="Nombre del Producto"
+                                        name="nombreProducto" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="email-bt" placeholder="Precio" name="precio" required>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" style="height: 50px;" name="Categoria" id="Categoria">
                                         {% for i in categoria %}
-                                        <option value="{{i.idCategoria}}">{{i.TipoProducto.nombreTipo}}: {{i.nombreCategoria}}</option>
+                                        <option value="{{i.idCategoria}}">{{i.TipoProducto.nombreTipo}}:
+                                            {{i.nombreCategoria}}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -168,10 +169,10 @@
 
                                 <div class="form-group">
                                     <textarea class="form-control" id="detalle" name="detalle" rows="5" cols="40"
-                                    placeholder="Detalle Producto" required></textarea>
+                                        placeholder="Detalle Producto" required></textarea>
                                 </div>
-                              
-                            
+
+
                                 <div>
                                     <center>
                                         <button type="submit" class="main_bt">Ingresar</button>
@@ -187,10 +188,10 @@
         </div>
     </div>
 
-    
+
     <!-- our section end -->
-   
-    
+
+
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">
@@ -242,7 +243,6 @@
     </div>
 
     <!-- Javascript files-->
-    <script src="{% static 'Core/js/jquery.min.js'%} "></script>
     <script src="{% static 'Core/js/popper.min.js'%}"></script>
     <script src="{% static 'Core/js/bootstrap.bundle.min.js'%} "></script>
     <script src="{% static 'Core/js/jquery-3.0.0.min.js'%}"></script>

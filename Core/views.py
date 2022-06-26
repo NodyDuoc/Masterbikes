@@ -15,33 +15,41 @@ def ReporteVentas(request,id):
     }
     return render(request,'Core/ReporteVentas.html',contexto)
 
-def RegistrarArriendo(request):
+def RegistrarArriendo(request,id):
     if request.POST:
         Fecha_Arriendo     = request.POST['fecha-arriendo']
         Fecha_Devolucion   = request.POST['fecha-devolucion'] 
         Categoria      = request.POST['Categoria']
-        rut      = request.POST['rut']
-        Arriendo.objects.create(FechaArriendo = Fecha_Arriendo, FechaDevolucion = Fecha_Devolucion, CategoriaBicicleta = Categoria,RutArrendador = rut)
+        
+        Arriendo.objects.create(FechaArriendo = Fecha_Arriendo, FechaDevolucion = Fecha_Devolucion, CategoriaBicicleta = Categoria,RutArrendador = id)
 
         messages.success(request, 'Arriendo registrado')
-        return redirect('arriendos')
+        return redirect('arriendos',id)
 
 
-def arriendos(request):
-    return render(request,'Core/arriendos.html')
+def arriendos(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    contexto={
+        "sesion":sesi,
+    }
+    return render(request,'Core/arriendos.html',contexto)
 
-def RegistrarReparacion(request):
+def RegistrarReparacion(request,id):
     if request.POST:
         Fecha_reparacion     = request.POST['fecha-reparacion']
         Categoria      = request.POST['Categoria']
-        rut      = request.POST['rut']
-        Reparacion.objects.create(FechaReparacion = Fecha_reparacion ,CategoriaBicicleta = Categoria,RutArrendador = rut)
+       
+        Reparacion.objects.create(FechaReparacion = Fecha_reparacion ,CategoriaBicicleta = Categoria,RutArrendador = id)
 
         messages.success(request, 'Reparacion agendada')
-        return redirect('reparacion')
+        return redirect('reparacion',id)
 
-def reparacion(request):
-    return render(request,'Core/reparacion.html')
+def reparacion(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    contexto={
+        "sesion":sesi,
+    }
+    return render(request,'Core/reparacion.html',contexto)
 
 def RegistrarProducto(request,id):
 

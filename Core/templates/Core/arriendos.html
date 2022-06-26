@@ -63,15 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'index' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Inicio</a>
-                                    <a href="{% url 'registro' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Registrarse</a>
-                                    <a href="{% url 'login' %}" style="margin-right: 5px;"><i
-                                            class="fa fa-fw fa-user"></i>
-                                        Iniciar Sesion</a>
+                                    <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Mi perfil</a>
+                                <a href="{% url 'catalogoSesion' sesion.idUsuario  %}"
+                                    style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Catalogo</a>
+                                <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -129,7 +126,7 @@
         </div>
         <div class="contact_main">
             <div class="enput_section">
-                <form action="{% url 'RegistrarArriendo' %}" method="POST" name="formarriendo" id="formarriendo"
+                <form action="{% url 'RegistrarArriendo' sesion.idUsuario %}" method="POST" name="formarriendo" id="formarriendo"
                     enctype="multipart/form-data">
                     {% csrf_token %}
                     {% if messages %}
@@ -168,12 +165,7 @@
                                         <option value="Urbanas">Urbanas</option>
                                     </select>
                                 </div>
-                                <div class="col-6">
-                                    <div>
-                                        <label for="rut" class="form-label">Rut Usuario</label>
-                                        <input type="text" class="form-control" id="rut" name="rut">
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
