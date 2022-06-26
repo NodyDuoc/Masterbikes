@@ -6,6 +6,13 @@ from django.contrib import messages
 
 # Create your views here.
 
+def RegistrarReparacion(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    contexto ={
+        "sesion":sesi,
+    }
+    return render(request,'Core/RegistrarReparacion.html',contexto)
+
 def RegistrarProducto(request,id):
 
     fotoProducto2          = request.FILES['fotoProducto']
