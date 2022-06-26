@@ -63,18 +63,19 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Mi perfil</a>
-                                    <a href="{% url 'catalogoSesion' sesion.idUsuario  %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Catalogo</a>
-                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
+                                    <a href="{% url 'index' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Inicio</a>
+                                    <a href="{% url 'registro' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Registrarse</a>
+                                    <a href="{% url 'login' %}" style="margin-right: 5px;"><i
+                                            class="fa fa-fw fa-user"></i>
+                                        Iniciar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
-                                <a href="{% url 'CarritoCompra' sesion.idUsuario %}">
                                 <div class="shoping_bag"><img src=" {% static 'Core/img/shopping-bag.png'%}"></div>
-                                </a>
                             </div>
                             <div class="right_main">
                                 <div class="togle_main"><a class="class=" openbtn onclick="openNav()"><img
@@ -93,11 +94,15 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="carousel-sporrt_text ">
                                     <h1 class="sport_text"><strong>Master<br><span
-                                                style="color: #fff;">Bikes</span></strong></h1>
+                                                style="color: #fff;">Bikes</span></strong>
+                                    </h1>
                                     <p class="lorem_text">It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout. The point of using
-                                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                                        opposed to using 'Content here, content</p>
+                                        by the
+                                        readable content of a page when looking at its layout. The point of using Lorem
+                                        Ipsum is
+                                        that it has a more-or-less normal distribution of letters, as opposed to using
+                                        'Content
+                                        here, content</p>
                                     <button class="boynow_bt">Ver más</button>
                                     <button class="contact_bt">Contáctanos</button>
                                 </div>
@@ -117,80 +122,67 @@
     <!-- <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span style="color: #000;">Armadas</span></strong></h2> -->
 
 
-
-
-
-
-
-
-
-    <div>
+    <!-- our section Start -->
+    <div class="contact_section layout_padding">
         <div class="container">
-            <h1 class="contact_text"><strong>Mi Perfil</strong></h1>
+            <h1 class="contact_text"><strong>Reparacion</strong></h1>
         </div>
         <div class="contact_main">
             <div class="enput_section">
-                <div class="email_box">
-                    <div class="input_main">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <img src="{{ sesion.foto.url }}" alt=""
-                                    style="margin-bottom: 10px; border-radius: 10px; max-width: 400px;">
-                            </div>
-
-                            <div class="container" style="background-color: white; border-radius: 10px; width: 400px;">
-                                <h2>Nombre de Usuario: {{sesion.username}}</h2>
-                                <h2>Nombre: {{sesion.nombre}} {{sesion.apellido}}</h2>
-                                <h2>Correo: {{sesion.email}}</h2>
-                            </div>
-
-                        </div>
-                        <center style="margin-top: 10px;">
-                            <div style="margin-bottom: 10px;">
-                                <a href="{% url 'modFotoUser' sesion.idUsuario %}">
-                                    <button type="button" class="main_bt">Editar Foto</button>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="{% url 'modDatosUser' sesion.idUsuario %}">
-                                <button type="button" class="main_bt">Editar Perfil</button>
-                                </a>
-                            </div>
-                        </center>
-
+                <form action="{% url 'RegistrarReparacion' %}" method="POST" name="formarriendo" id="formarriendo"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <div>
+                        {% for i in messages %}
+                        <p style="color: white;">{{ i }}</p>
+                        {% endfor %}
                     </div>
-                </div>
+                    {% endif %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <label for="fecha-reparacion" class="form-label">Fecha de reparacion</label>
+                                        <input type="date" class="form-control" id="fecha-reparacion"
+                                            name="fecha-reparacion">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div>
+                                        <label class="form-label">Escoja la categoria de la bicicleta que
+                                            necesita</label>
+                                    </div>
+                                    <select class="Categoria" id="Categoria" name="Categoria">
+                                        <option selected>Escoja un tipo de bicicleta</option>
+                                        <option value="Paseo">Paseo</option>
+                                        <option value="Montaña">Montaña</option>
+                                        <option value="Competicion">Competicion</option>
+                                        <option value="Ruta ">Ruta</option>
+                                        <option value="Urbanas">Urbanas</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <div>
+                                        <label for="rut" class="form-label">Rut Usuario</label>
+                                        <input type="text" class="form-control" id="rut" name="rut">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary">Agendar</button>
+                        </div>
+                    </div>
+                    
             </div>
+            </form>
+        </div>
         </div>
     </div>
     <!-- our section end -->
 
-    <!-- about section start -->
-   <div class="container-fluid">
-    <div class="about_section">
-       <div class="container">
-          <div clas="about_img"><img src="{% static 'Core/img/bici_armada.png'%}" style="max-width: 700px;"></div>
-          
-          
-          <div class="red_bt">
-             <a href="{% url 'catalogoSesion' sesion.idUsuario  %}">
-             <button class="read_more">Ver Catalogo</button></a>
-          </div>
-          <div class="red_bt">
-            <a href="{% url 'CarritoCompra' sesion.idUsuario  %}">
-            <button class="read_more">Ver Carrito</button></a>
-         </div>
-        {% if sesion.RolUsuario.idRol == 2 %}
-        <div class="red_bt">
-            <a href="{% url 'ReporteVentas' sesion.idUsuario  %}">
-            <button class="read_more">Reporte de Ventas</button></a>
-         </div>
-        {% endif %}
-         
-       </div>
-    </div>
- </div>
- <!-- about section end -->
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">
@@ -242,7 +234,6 @@
     </div>
 
     <!-- Javascript files-->
-    <script src="{% static 'Core/js/jquery.min.js'%} "></script>
     <script src="{% static 'Core/js/popper.min.js'%}"></script>
     <script src="{% static 'Core/js/bootstrap.bundle.min.js'%} "></script>
     <script src="{% static 'Core/js/jquery-3.0.0.min.js'%}"></script>
@@ -253,6 +244,7 @@
     <!-- javascript -->
     <script src="{% static 'Core/js/owl.carousel.js'%}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
     <!-- 
          <script>
             $(document).ready(function(){

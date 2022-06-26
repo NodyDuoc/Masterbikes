@@ -1,7 +1,7 @@
 from email import message
 from tkinter.tix import Tree
 from django.shortcuts import render, redirect
-from .models import  Venta,RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito, Arriendo
+from .models import  Venta,RolUsuario, Usuario, Producto, Color, Categoria, TipoProducto, Carrito, Arriendo, Reparacion
 from django.contrib import messages
 
 # Create your views here.
@@ -30,12 +30,18 @@ def RegistrarArriendo(request):
 def arriendos(request):
     return render(request,'Core/arriendos.html')
 
-def RegistrarReparacion(request,id):
-    sesi = Usuario.objects.get(idUsuario = id)
-    contexto ={
-        "sesion":sesi,
-    }
-    return render(request,'Core/RegistrarReparacion.html',contexto)
+def RegistrarReparacion(request):
+    if request.POST:
+        Fecha_reparacion     = request.POST['fecha-reparacion']
+        Categoria      = request.POST['Categoria']
+        rut      = request.POST['rut']
+        Reparacion.objects.create(FechaReparacion = Fecha_reparacion ,CategoriaBicicleta = Categoria,RutArrendador = rut)
+
+        messages.success(request, 'Reparacion agendada')
+        return redirect('reparacion')
+
+def reparacion(request):
+    return render(request,'Core/reparacion.html')
 
 def RegistrarProducto(request,id):
 

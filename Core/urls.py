@@ -16,13 +16,14 @@ Including another URLconf
 from unicodedata import name
 from django.urls import URLPattern, path
 from django.conf import settings
-from .views import ReporteVentas,arriendos,RegistrarArriendo,RegistrarReparacion, RegistrarProducto, ingresarProducto,comprarCarrito, eliminarCarrito, añadirCarrito,CarritoCompra, detalleProdSesion, catalogoSesion, index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado, catalogo, detalleProd
+from .views import reparacion,ReporteVentas,arriendos,RegistrarArriendo,RegistrarReparacion, RegistrarProducto, ingresarProducto,comprarCarrito, eliminarCarrito, añadirCarrito,CarritoCompra, detalleProdSesion, catalogoSesion, index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado, catalogo, detalleProd
 from . import views
 from .models import RolUsuario, Usuario
 from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
+    path('reparacion/',reparacion,name="reparacion"),
     path('ReporteVentas/<int:id>',ReporteVentas,name="ReporteVentas"),
     path('arriendos/',arriendos,name="arriendos"),
     path('RegistrarArriendo/',RegistrarArriendo,name="RegistrarArriendo"),
