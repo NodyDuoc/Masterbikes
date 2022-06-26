@@ -6,6 +6,15 @@ from django.contrib import messages
 
 # Create your views here.
 
+def ReporteVentas(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    vent = Venta.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "venta":vent
+    }
+    return render(request,'Core/ReporteVentas.html',contexto)
+
 def RegistrarArriendo(request):
     if request.POST:
         Fecha_Arriendo     = request.POST['fecha-arriendo']
