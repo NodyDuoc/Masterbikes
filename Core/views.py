@@ -6,6 +6,29 @@ from django.contrib import messages
 
 # Create your views here.
 
+def RegistrarProducto(request,id):
+
+    fotoProducto2          = request.FILES['fotoProducto']
+    nombreProducto2       = request.POST['nombreProducto']
+    precio2          = request.POST['precio']
+    detalle2  = request.POST['detalle']
+    Categoria2    = request.POST['Categoria']
+    Color2     = request.POST['Color']
+
+    Categoria3    = Categoria.objects.get(idCategoria = Categoria2)
+    Color3         = Usuario.objects.get(idColor = Color2)
+
+
+    Producto.objects.create(nombreProducto = nombreProducto2, fotoProducto = fotoProducto2, precio = precio2, detalle = detalle2, Categoria = Categoria3, Color = Color3)
+    messages.success(request, 'Producto Registrado')
+    return redirect ('ingresarProducto',id)
+def ingresarProducto(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    contexto ={
+        "sesion":sesi
+    }
+    return render(request,'Core/ingresarProducto.html',contexto)
+
 def CarritoCompra(request,id):
     sesi    = Usuario.objects.get(idUsuario = id)
     carri   = Carrito.objects.all()
