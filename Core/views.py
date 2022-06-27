@@ -6,6 +6,51 @@ from django.contrib import messages
 
 # Create your views here.
 
+def HistorialArriendos(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    arri = Arriendo.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "arriendo":arri
+    }
+    return render(request,'Core/HistorialArriendos.html',contexto)
+
+def HistorialReparaciones(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    repa = Reparacion.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "reparacion":repa
+    }
+    return render(request,'Core/HistorialReparaciones.html',contexto)
+
+def HistorialCompras(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    vent = Venta.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "venta":vent
+    }
+    return render(request,'Core/HistorialCompras.html',contexto)
+
+def ReporteArriendos(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    arri = Arriendo.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "arriendo":arri
+    }
+    return render(request,'Core/ReporteArriendos.html',contexto)
+
+def ReporteReparaciones(request,id):
+    sesi = Usuario.objects.get(idUsuario = id)
+    repa = Reparacion.objects.all()
+    contexto ={
+        "sesion":sesi,
+        "reparacion":repa
+    }
+    return render(request,'Core/ReporteReparaciones.html',contexto)
+
 def ReporteVentas(request,id):
     sesi = Usuario.objects.get(idUsuario = id)
     vent = Venta.objects.all()

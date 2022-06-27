@@ -16,15 +16,21 @@ Including another URLconf
 from unicodedata import name
 from django.urls import URLPattern, path
 from django.conf import settings
-from .views import reparacion,ReporteVentas,arriendos,RegistrarArriendo,RegistrarReparacion, RegistrarProducto, ingresarProducto,comprarCarrito, eliminarCarrito, añadirCarrito,CarritoCompra, detalleProdSesion, catalogoSesion, index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado, catalogo, detalleProd
+from .views import HistorialCompras,HistorialArriendos,HistorialReparaciones,ReporteReparaciones,ReporteArriendos,ReporteVentas,reparacion,arriendos,RegistrarArriendo,RegistrarReparacion, RegistrarProducto, ingresarProducto,comprarCarrito, eliminarCarrito, añadirCarrito,CarritoCompra, detalleProdSesion, catalogoSesion, index, login, perfil, registro, registrarUsuario,loginUser, modFotoUser, userFotoModificado,modDatosUser,userDatosModificado, catalogo, detalleProd
 from . import views
 from .models import RolUsuario, Usuario
 from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path('reparacion/<int:id>',reparacion,name="reparacion"),
+    path('HistorialReparaciones/<int:id>',HistorialReparaciones,name="HistorialReparaciones"),
+    path('HistorialArriendos/<int:id>',HistorialArriendos,name="HistorialArriendos"),
+    path('HistorialCompras/<int:id>',HistorialCompras,name="HistorialCompras"),
+
+    path('ReporteReparaciones/<int:id>',ReporteReparaciones,name="ReporteReparaciones"),
+    path('ReporteArriendos/<int:id>',ReporteArriendos,name="ReporteArriendos"),
     path('ReporteVentas/<int:id>',ReporteVentas,name="ReporteVentas"),
+    path('reparacion/<int:id>',reparacion,name="reparacion"),
     path('arriendos/<int:id>',arriendos,name="arriendos"),
     path('RegistrarArriendo/<int:id>',RegistrarArriendo,name="RegistrarArriendo"),
     path('RegistrarReparacion/<int:id>',RegistrarReparacion,name="RegistrarReparacion"),

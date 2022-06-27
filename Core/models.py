@@ -76,10 +76,10 @@ class Arriendo(models.Model):
     FechaArriendo         = models.DateField(null=False)
     FechaDevolucion       = models.DateField(null=False)
     CategoriaBicicleta = models.CharField(max_length=60, null=False, blank=False)
-    RutArrendador = models.CharField(max_length=60, null=False, blank=False)
+    RutArrendador = models.IntegerField(null=False, blank=False, default=0)
     
 class Reparacion(models.Model):
     IdReparacion = models.AutoField(primary_key=True)
     FechaReparacion    = models.DateField(null=False)
     CategoriaBicicleta = models.CharField(max_length=60, null=False, blank=False)
-    RutArrendador = models.CharField(max_length=60, null=False, blank=False)
+    RutArrendador = models.IntegerField(null=False, blank=False, default=0)

@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="{% static 'Core/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'Core/css/bootstrap.min.css' %}">
     <!-- style css -->
     <link rel="stylesheet" href="{% static 'Core/css/style.css' %}">
     <!-- Responsive-->
@@ -63,12 +63,12 @@
                         <div class="togle_3">
                             <div class="left_main">
                                 <div class="menu_main">
-                                    <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Mi perfil</a>
-                                    <a href="{% url 'catalogoSesion' sesion.idUsuario  %}"
-                                        style="margin-right: 10px;"><i class="fa fa-fw fa-user"></i> Catalogo</a>
-                                    <a href="{% url 'index' %}" style="margin-right: 10px;"><i
-                                            class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
+                                <a href="{% url 'perfil' sesion.idUsuario %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Mi perfil</a>
+                                <a href="{% url 'catalogoSesion' sesion.idUsuario  %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Catalogo</a>
+                                <a href="{% url 'index' %}" style="margin-right: 10px;"><i
+                                        class="fa fa-fw fa-user"></i> Cerrar Sesion</a>
                                 </div>
                             </div>
                             <div class="middle_main">
@@ -93,11 +93,15 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="carousel-sporrt_text ">
                                     <h1 class="sport_text"><strong>Master<br><span
-                                                style="color: #fff;">Bikes</span></strong></h1>
+                                                style="color: #fff;">Bikes</span></strong>
+                                    </h1>
                                     <p class="lorem_text">It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout. The point of using
-                                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                                        opposed to using 'Content here, content</p>
+                                        by the
+                                        readable content of a page when looking at its layout. The point of using Lorem
+                                        Ipsum is
+                                        that it has a more-or-less normal distribution of letters, as opposed to using
+                                        'Content
+                                        here, content</p>
                                     <button class="boynow_bt">Ver más</button>
                                     <button class="contact_bt">Contáctanos</button>
                                 </div>
@@ -116,122 +120,32 @@
     </div>
     <!-- <h2 class="about_text" style="color: #ff7e1d"><strong>Bicicletas <span style="color: #000;">Armadas</span></strong></h2> -->
 
-
-
-
-
-
-
-
-
-    <div>
-        <div class="container">
-            <h1 class="contact_text"><strong>Mi Perfil</strong></h1>
-        </div>
-        <div class="contact_main">
-            <div class="enput_section">
-                <div class="email_box">
-                    <div class="input_main">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <img src="{{ sesion.foto.url }}" alt=""
-                                    style="margin-bottom: 10px; border-radius: 10px; max-width: 400px;">
-                            </div>
-
-                            <div class="container" style="background-color: white; border-radius: 10px; width: 400px;">
-                                <h2>Nombre de Usuario: {{sesion.username}}</h2>
-                                <h2>Nombre: {{sesion.nombre}} {{sesion.apellido}}</h2>
-                                <h2>Correo: {{sesion.email}}</h2>
-                            </div>
-
-                        </div>
-                        <center style="margin-top: 10px;">
-                            <div style="margin-bottom: 10px;">
-                                <a href="{% url 'modFotoUser' sesion.idUsuario %}">
-                                    <button type="button" class="main_bt">Editar Foto</button>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="{% url 'modDatosUser' sesion.idUsuario %}">
-                                    <button type="button" class="main_bt">Editar Perfil</button>
-                                </a>
-                            </div>
-                        </center>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <!-- our section Start -->
+    <table class="table table-striped">
+    
+        <tr>
+            <td>Id Reparacion</td>
+            <td>Fecha de Reparacion</td>
+            <td>Categoria de Bicicleta</td>
+            <td>Id Cliente</td>
+          
+        </tr>
+        {% if reparacion %}
+        {% for v in reparacion %}
+        {% if v.RutArrendador == sesion.idUsuario %}
+        <tr>
+            <td>{{ v.IdReparacion }}</td>
+            <td>{{ v.FechaReparacion }}</td>
+            <td>{{ v.CategoriaBicicleta }}</td>
+            <td>{{ v.RutArrendador }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </table>
     <!-- our section end -->
-
-    <!-- about section start -->
-    <div class="container-fluid">
-        <div class="about_section">
-            <div class="container">
-                <div clas="about_img"><img src="{% static 'Core/img/bici_armada.png'%}" style="max-width: 700px;"></div>
-
-
-                <div class="red_bt">
-                    <a href="{% url 'catalogoSesion' sesion.idUsuario  %}">
-                        <button class="read_more">Ver Catalogo</button></a>
-                </div>
-                <div class="red_bt">
-                    <a href="{% url 'CarritoCompra' sesion.idUsuario  %}">
-                        <button class="read_more">Ver Carrito</button></a>
-                </div>
-
-                <div class="red_bt">
-                    <a href="{% url 'reparacion' sesion.idUsuario %}">
-                        <button class="read_more">Reparacion</button></a>
-                </div>
-                <div class="red_bt">
-                    <a href="{% url 'arriendos' sesion.idUsuario %}">
-                        <button class="read_more">Arriendo</button></a>
-                </div>
-
-                <div class="red_bt">
-                    <a href="{% url 'HistorialCompras' sesion.idUsuario  %}">
-                        <button class="read_more">Mis Compras</button></a>
-                </div>
-                <div class="red_bt">
-                    <a href="{% url 'HistorialReparaciones' sesion.idUsuario  %}">
-                        <button class="read_more">Mis Reparaciones</button></a>
-                </div>
-                <div class="red_bt">
-                    <a href="{% url 'HistorialArriendos' sesion.idUsuario  %}">
-                        <button class="read_more">Mis Arriendos</button></a>
-                </div>
-
-
-                {% if sesion.RolUsuario.idRol == 2 %}
-                <div class="red_bt">
-                    <a href="{% url 'ingresarProducto' sesion.idUsuario  %}">
-                        <button class="read_more">Ingresar productos</button></a>
-                </div>
-            
-                <div>
-                    <div class="red_bt">
-                        <a href="{% url 'ReporteVentas' sesion.idUsuario  %}">
-                            <button class="read_more">Rep.Ventas</button></a>
-                    </div>
-                    <div class="red_bt">
-                        <a href="{% url 'ReporteReparaciones' sesion.idUsuario  %}">
-                            <button class="read_more">Rep.Reparaciones</button></a>
-                    </div>
-                    <div class="red_bt">
-                        <a href="{% url 'ReporteArriendos' sesion.idUsuario  %}">
-                            <button class="read_more">Rep.Arriendos</button></a>
-                    </div>
-
-                </div>
-                
-                {% endif %}
-
-            </div>
-        </div>
-    </div>
-    <!-- about section end -->
+    
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">
@@ -294,6 +208,7 @@
     <!-- javascript -->
     <script src="{% static 'Core/js/owl.carousel.js'%}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
     <!-- 
          <script>
             $(document).ready(function(){
