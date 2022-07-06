@@ -185,17 +185,21 @@ def eliminarCarrito(request,idUser,idCarri):
 
 def comprarCarrito(request,idUser):  
     User = Usuario.objects.get(idUsuario = idUser) 
- 
-    if Venta:
-        numVentas = Venta.objects.all()
-        max_value = None
-        for num in numVentas:
-            if (max_value is None or num.IdVenta > max_value):
-                max_value = num.IdVenta
-        maxVenta = max_value
-    else:
-        maxVenta = 1
-    
+    maxVenta = 0
+    try:
+        if Venta:
+            numVentas = Venta.objects.all()
+            max_value = 0
+            for num in numVentas:
+                if (max_value is 0 or num.IdVenta > max_value):
+                    max_value = num.IdVenta
+            maxVenta = max_value
+        else:
+            maxVenta = 0
+    except:
+        maxVenta = 0
+
+    maxVenta = maxVenta + 1
     carri = Carrito.objects.all()
     for c in carri :
         if c.Usuario == User:
